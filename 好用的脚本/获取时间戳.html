@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    年
+    <input id="p1" type="text">
+    <br>
+     月
+    <input id="p2" type="text"><br> 日
+    <input id="p3" type="text"><br> 小时
+    <input id="p4" type="text"><br> 分钟
+    <input id="p5" type="text"><br> 秒
+    <input id="p6" type="text">
+    <br>
+    <button>获取时间戳</button>
+    <p id="p"></p>
+    <p id="pg"></p>
+    <script>
+        var p = document.getElementById('p')
+        var pg = document.getElementById('pg')
+        var btn = document.querySelector('button')
+        btn.onclick = function () {
+            var g1 = document.getElementById('p1').value
+            var g2 = document.getElementById('p2').value
+            var g3 = document.getElementById('p3').value
+            var g4 = document.getElementById('p4').value
+            var g5 = document.getElementById('p5').value
+            var g6 = document.getElementById('p6').value
+            var tmp = `${g1}-${g2}-${g3} ${g4}:${g5}:${g6}`
+            console.log(tmp)
+            var CC = new Date(tmp).getTime()
+            p.innerText = tmp ;
+            pg.innerText = CC
+        }
+    </script>
+</body>
+
+</html>
