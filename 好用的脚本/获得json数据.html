@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>批量生成dom元素脚本-数据筛选基于数组split</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .w_r_container {
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .writting_zone {
+            background-color: antiquewhite;
+            flex: 1;
+        }
+
+        .writting_zone textarea {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            resize: none;
+        }
+
+        .control_zone {
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 200px;
+            height: 400px;
+            margin-left: 30px;
+            border: 1px solid #ccc;
+        }
+
+        .control_zone h1 {
+            border-bottom: 3px solid #000;
+        }
+
+        .control_zone button {
+            width: 100%;
+            height: 40px;
+            font-size: 24px;
+            line-height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .control_zone select {
+            height: 45px;
+            width: 100%;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .show_container {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            font-size: 15px;
+            overflow: auto;
+        }
+
+        .get_container {
+            width: 100%;
+            height: 60px;
+            overflow: auto;
+            border: 1px solid #000;
+            resize: none;
+        }
+
+        .name_select {
+            height: 40px;
+            width: 100%;
+        }
+
+        .name_select input {
+            float: left;
+            width: 44%;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w_r_container">
+        <div class="writting_zone">
+            <textarea id="writtingval"></textarea>
+        </div>
+        <div class="control_zone">
+            <h1>控制区域</h1>
+            <h4>每次匹配条数</h4>
+            <select name="" id="num">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">6</option>
+                <option value="8">6</option>
+            </select>
+            <div class="name_select">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+            </div>
+            <button onclick="buildtest()">去除空格</button>
+            <button onclick="build()">生成json数据</button>
+            <button onclick="copy()">复制输出</button>
+        </div>
+    </div>
+    <div class="show_container_title">粗略展示</div>
+    <div class="show_container"></div>
+    <div class="get_container_title">获取数据</div>
+    <textarea class="get_container"></textarea>
+    <script>
+        //去除空格
+        function buildtest() {
+            writtingval = document.getElementById('writtingval')
+            var str = writtingval.value
+            var arr = str.split('\n')
+            var tmparr = arr.filter(item => {
+                return item !== ''
+            })
+            var newstr = ''
+            tmparr.forEach(item => {
+                newstr += (item + '\n')
+            })
+            writtingval.value = newstr
+        }
+        //创建逻辑
+        function build() {
+            writtingval = document.getElementById('writtingval')
+            var str = writtingval.value
+            var num = parseInt(document.getElementById('num').value)
+            var show_container = document.querySelector('.show_container')
+            var get_container = document.querySelector('.get_container')
+            var descriptWord = document.querySelectorAll('.name_select input')
+            console.log(descriptWord)
+            if (str.length <= 0) {
+                alert('未输入');
+                return;
+            }
+            var arr = str.split('\n')
+            // console.log(arr)
+            var arrnew = arr.filter(item => {
+                return item !== ''
+            })
+            if (arrnew.length < num) {
+                alert('数据不全-或不匹配')
+                return
+            }
+            // 获取描述
+            var descArr = []
+            for (let i = 0; i < num; i++) {
+                if (!descriptWord[i].value) {
+                    alert('请输入完整描述')
+                    return
+                }
+                descArr.push(descriptWord[i].value)
+            }
+            console.log(descArr)
+            //遍历成数组对象
+            var arrfinal = []
+            var total = arrnew.length / num
+            for (var i = 0; i < total; i++) {
+                var nowObj = {}
+                for (let j = 0; j < num; j++) {
+                    console.log(arrnew[i * num + j])
+                    if (!arrnew[i * num + j]) {
+                        let errNum = i + 1;
+                        alert('数据缺失请注意-缺失---' + descArr[j] + '---为最后一组')
+                    }
+                    nowObj[descArr[j]] = arrnew[i * num + j]
+                }
+                arrfinal.push(nowObj)
+            }
+            var tmp_arr = []
+            tmp_arr = JSON.stringify(arrfinal.slice(0, 2))
+            //获取前两行的数据
+            var json_mydata = JSON.stringify(arrfinal)
+            show_container.innerHTML = tmp_arr + '&nbsp;&nbsp;&nbsp;' + '生成成功'
+            get_container.innerHTML = json_mydata
+        }
+
+        function copy() {
+            var str = document.querySelector('.get_container').value
+            console.log(str.length)
+            if(!str) {
+                alert('请先输入')
+                return
+            }
+            var oInput = document.createElement('input');
+            oInput.value = str;
+            document.body.appendChild(oInput);
+            oInput.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            oInput.style.display = 'none';
+            alert('复制成功');
+        }
+    </script>
+</body>
+
+</html>

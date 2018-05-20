@@ -10,13 +10,35 @@
 
 <body>
     年
+    <select name="year" id="">
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+    </select>
     <input id="p1" type="text">
-    <br>
-     月
-    <input id="p2" type="text"><br> 日
-    <input id="p3" type="text"><br> 小时
-    <input id="p4" type="text"><br> 分钟
-    <input id="p5" type="text"><br> 秒
+    <br> 月
+    <select name="month" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+    <input id="p2" type="text">
+    <br> 日
+    <input id="p3" type="text">
+    <br> 小时
+    <input id="p4" type="text">
+    <br> 分钟
+    <input id="p5" type="text">
+    <br> 秒
     <input id="p6" type="text">
     <br>
     <button>获取时间戳</button>
@@ -33,10 +55,14 @@
             var g4 = document.getElementById('p4').value
             var g5 = document.getElementById('p5').value
             var g6 = document.getElementById('p6').value
+            if (!g1 || !g2 || !g3 || !g4 || !g5 || !g6) {
+                alert('请输入完毕')
+                return
+            }
             var tmp = `${g1}-${g2}-${g3} ${g4}:${g5}:${g6}`
             console.log(tmp)
             var CC = new Date(tmp).getTime()
-            p.innerText = tmp ;
+            p.innerText = tmp;
             pg.innerText = CC
         }
     </script>
