@@ -41,7 +41,7 @@
             padding-left: 10px;
             padding-right: 10px;
             width: 200px;
-            height: 400px;
+            height: 540px;
             margin-left: 30px;
             border: 1px solid #ccc;
         }
@@ -63,6 +63,13 @@
             width: 100%;
             font-size: 26px;
             margin-bottom: 20px;
+        }
+
+        .tips_bottom {
+            font-size: 20px;
+            color: #000;
+            border-bottom: 1px solid #000;
+            text-align: center;
         }
 
         .show_container {
@@ -127,6 +134,11 @@
             <button onclick="buildtest()">去除空格</button>
             <button onclick="build()">生成json数据</button>
             <button onclick="copy()">复制输出</button>
+            键名<input id="add_key" type="text">
+            键值<input id="add_val" type="text">
+            <p class="tips_bottom">是否插入新数据</p>
+            <input type="radio" value="true" name="isadd">是
+            <input type="radio" value="false" checked name="isadd">否
         </div>
     </div>
     <div class="show_container_title">粗略展示</div>
@@ -156,13 +168,14 @@
             var show_container = document.querySelector('.show_container')
             var get_container = document.querySelector('.get_container')
             var descriptWord = document.querySelectorAll('.name_select input')
-            console.log(descriptWord)
+            var isadd_radio = document.querySelector("input[name='isadd']:checked").value
+            var add_key = document.getElementById('add_key').value
+            var add_val = document.getElementById('add_val').value
             if (str.length <= 0) {
                 alert('未输入');
                 return;
             }
             var arr = str.split('\n')
-            // console.log(arr)
             var arrnew = arr.filter(item => {
                 return item !== ''
             })
@@ -179,19 +192,31 @@
                 }
                 descArr.push(descriptWord[i].value)
             }
-            console.log(descArr)
             //遍历成数组对象
             var arrfinal = []
             var total = arrnew.length / num
             for (var i = 0; i < total; i++) {
                 var nowObj = {}
                 for (let j = 0; j < num; j++) {
-                    console.log(arrnew[i * num + j])
                     if (!arrnew[i * num + j]) {
                         let errNum = i + 1;
                         alert('数据缺失请注意-缺失---' + descArr[j] + '---为最后一组')
                     }
                     nowObj[descArr[j]] = arrnew[i * num + j]
+                }
+                //新增字段逻辑
+                if(isadd_radio == 'true') {
+                    if(!add_key || !add_val) {
+                        alert('请输入添加字段键或值')
+                        return
+                    }
+                    if(descArr.some(element=>{
+                        element == add_key
+                    })) {
+                        alert('键名与之前的重复')
+                        return
+                    }
+                    nowObj[add_key] = add_val
                 }
                 arrfinal.push(nowObj)
             }
@@ -202,11 +227,10 @@
             show_container.innerHTML = tmp_arr + '&nbsp;&nbsp;&nbsp;' + '生成成功'
             get_container.innerHTML = json_mydata
         }
-
+        //复制到剪切板
         function copy() {
             var str = document.querySelector('.get_container').value
-            console.log(str.length)
-            if(!str) {
+            if (!str) {
                 alert('请先输入')
                 return
             }
