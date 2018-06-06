@@ -7,3 +7,9 @@
 + step4 编辑app.js进行设置
 + step5 node app 或者 node app.js 开启服务器
 + final 手机输入此ip地址就能访问
+
+# 分享图片到微信 微信识别图片
+
+# 图片识别后跳转链接
+
+# 链接中自带剪切板
