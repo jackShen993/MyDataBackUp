@@ -1,102 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        #div {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #000;
-        }
-
-        input {
-            opacity: 0;
-        }
-    </style>
-    <script src="./static/clipboard.min.js"></script>
-</head>
-
-<body>
-    <div id="div" data-clipboard-target="#input">剪切板</div>
-    <input id="inputt" type="text" style="opacity: 0;z-index: -1;" value="嘿嘿嘿">
-    <textarea id="input" ></textarea>
-    <script>
-        var div = document.getElementById('div')
-        div.onclick = function (e) {
-            //安卓可以使用这个方式
-            // var input = document.createElement("input");
-            // input.value = '测试' + new Date().getSeconds();
-            // document.body.appendChild(input);
-            // input.style.opacity = 0;
-            // input.style.zIndex = -1;
-            // var input = document.getElementById('inputt')
-            // input.select();
-            // input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
-            // document.body.removeChild(input);
-            // alert('修改剪切板成功')
-
-
-            // var text = '测试' + new Date().getSeconds()
-            // if (e.clipboardData.setData("text", text)) {
-            //     alert("复制成功!")
-            // } else {
-            //     alert("复制失败!")
-            // }
-
-            //ios的使用方法--不行
-            // var save = function (e) {
-            //     var clipboardData = e.clipboardData || window.clipboardData
-            //     var text = '测试' + new Date().getSeconds()
-            //     clipboardData.setData('text/plain', text)
-            //     e.preventDefault();
-            // }
-            // document.addEventListener('copy', save);
-            // document.execCommand('copy');
-            // document.removeEventListener('copy', save);
-            // alert('复制成功')
-
-            //ios的使用方法 -- 
-            // var input = document.createElement('input')//要复制文字的节点    
-            // input.value = '测试' + new Date().getSeconds()
-            // var range = document.createRange();
-            // // 选中需要复制的节点    
-            // range.selectNode(input);
-            // // 执行选中元素    
-            // window.getSelection().addRange(range);
-            // // 执行 copy 操作    
-            // var successful = document.execCommand('copy');
-            // try {
-            //     var msg = successful ? 'successful' : 'unsuccessful';
-
-            //     console.log('copy is' + msg);
-            // } catch (err) {
-            //     console.log('Oops, unable to copy');
-            // }
-            // // 移除选中的元素    
-            // window.getSelection().removeAllRanges();
-
-
-            //ios的使用方法 --暂时可用
-            let t = document.getElementById("input");
-            t.value = '测试' + new Date().getSeconds();
-            //实例化clipboard  
-            var clipboard = new ClipboardJS('#div');
-            clipboard.on("success", function (e) {
-                // $(".alertMsg").html("复制成功！");
-                // $(".modal-bg").css("display", "block");
-                alert('复制成功');
-                e.clearSelection();
-            });
-            clipboard.on("error", function (e) {
-                $(".alertMsg").html("请选择“拷贝”进行复制!");
-                $(".modal-bg").css("display", "block");
-            });
-        }
-    </script>
-</body>
-
-</html>
+<!DOCTYPE html><html><script>//声明_czc对象:
+var _czc = _czc || [];
+//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+_czc.push(["_setAccount", "1259421891"]);</script><head><meta charset=UTF-8><meta http-equiv=Content-Type content="text/html;charset=UTF-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"><meta http-equiv=Pragma content=no-cache><meta http-equiv=Expires content=0><title>端午活动</title><style type=text/css>body{overflow: auto !important}</style></head><link rel=stylesheet href=./static/animation.css><script>var d = window.document.createElement('p');
+	    d.style.width = '1rem';
+	    d.style.display = "none";
+	    var head = window.document.getElementsByTagName('head')[0];
+	    head.appendChild(d);
+	    var defaultFontSize = parseFloat(window.getComputedStyle(d, null).getPropertyValue('width'));
+		(function(doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					docEl.style.fontSize = 100 * (clientWidth / 750)/(defaultFontSize/16) + 'px';
+				};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+		if ('addEventListener' in document) {
+		    document.addEventListener('DOMContentLoaded', function() {
+		        FastClick.attach(document.body);
+		    }, false);
+		}
+		var init=false,bri={};
+		function connectWebViewJavascriptBridge(callback) {
+			if (window.WebViewJavascriptBridge) {
+				return callback(WebViewJavascriptBridge);
+			}
+	        if (window.WVJBCallbacks){
+	            return window.WVJBCallbacks.push(callback);
+	        }
+	        window.WVJBCallbacks = [callback];
+	        var WVJBIframe = document.createElement('iframe');
+	        WVJBIframe.style.display = 'none';
+	        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+	        document.documentElement.appendChild(WVJBIframe);
+	        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+		}
+		connectWebViewJavascriptBridge(function(bridge) {
+			init=true;
+			bri=bridge;
+		})</script><body><div id=app></div><script src=./static/fastclick.js></script>
+		<script src="lo"></script>
+		<script type=text/javascript src=./static/js/manifest.0458992dd8c60d472c54.js></script><script type=text/javascript src=./static/js/vendor.b87088e0eb23eef15a52.js></script><script type=text/javascript src=./static/js/app.fedf70166e5d3aa623c1.js></script></body></html>

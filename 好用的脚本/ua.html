@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        div {
+            box-sizing: border-box;
+            border-right: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+            padding: 10px;
+            width: 33.3%;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>ios_qq</h1>mozilla/5.0 (iphone; cpu iphone os 10_3_3 like mac os x) applewebkit/603.3.8 (khtml, like gecko) mobile/14g60
+        qq/7.5.8.422 v1_iph_sq_7.5.8_1_app_a pixel/640 core/uiwebview device/apple(iphone 5s) nettype/wifi qbwebviewtype/1</div>
+    <div>
+        <h1>ios_weixin</h1>mozilla/5.0 (iphone; cpu iphone os 10_3_3 like mac os x) applewebkit/603.3.8 (khtml, like gecko) mobile/14g60
+        micromessenger/6.6.7 nettype/wifi language/zh_cn</div>
+    <div>
+        <h1>ios_qqliulan</h1>mozilla/5.0 (iphone 5sgsm; cpu iphone os 10_3_3 like mac os x) applewebkit/603.3.8 (khtml, like
+        gecko) version/10.0 mqqbrowser/8.4.0 mobile/14g60 safari/602.1 mttcustomua/2 qbwebviewtype/1 wktype/1
+    </div>
+    <div>
+        <h1>anzhuo_qq</h1>mozilla/5.0 (linux; android 8.0; mi 6 build/yaodao; wv) applewebkit/537.36 (khtml, like gecko) version/4.0
+        chrome/57.0.2987.132 mqqbrowser/6.2 tbs/044105 mobile safari/537.36 v1_and_sq_7.6.0_832_yyb_d qq/7.6.0.3525 nettype/wifi
+        webp/0.3.0 pixel/1080
+    </div>
+    <div>
+        <h1>anzhuo_weixin</h1>mozilla/5.0 (linux; android 8.0; mi 6 build/yaodao; wv) applewebkit/537.36 (khtml, like gecko)
+        version/4.0 chrome/57.0.2987.132 mqqbrowser/6.2 tbs/044156 mobile safari/537.36 micromessenger/6.6.6.1300(0x26060632)
+        nettype/wifi language/zh_cn
+    </div>
+    <div>
+        <h1>anzhuo_qqliulan</h1>mozilla/5.0 (linux; u; android 8.0.0; zh-cn; mi 6 build/yaodao) applewebkit/537.36 (khtml, like
+        gecko) version/4.0 chrome/57.0.2987.132 mqqbrowser/8.4 mobile safari/537.36
+    </div>
+    <script>
+        //  判断是否为qq或微信内置浏览器
+        // 第一个判断是微信内置浏览器
+        // 第二个判断是Android QQ内置浏览器
+        // 第三个判断是IOS QQ内置浏览器
+        function isWeiXin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger" || ua.match(/WeiBo/i) == "weibo") {
+                return true;
+            } else if (ua.indexOf('mqqbrowser') > -1 && ua.indexOf('qq/')>-1) {
+                return true;
+            } else if (ua.indexOf('iphone') > -1 || ua.indexOf('mac') > -1) {
+                if (ua.indexOf('qq') > -1) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
