@@ -26,7 +26,6 @@ module.exports = obj;
 'use strict'
 const merge = require('webpack-merge')
 const prodEnv = require('./prod.env')
-
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   API_ROOT: '"//test.mrpyq.com"'
@@ -35,13 +34,10 @@ module.exports = merge(prodEnv, {
 ## step three
 + 在main.js的vue-resource中的配置中加入以下代码
 ```
-var root = process.env.API_ROOT
-;
+var root = process.env.API_ROOT;
 Vue.http.options.root = root;
 ```
 
 参考地址:
-+ 
-https://blog.csdn.net/fungleo/article/details/54574049
-+
-https://www.cnblogs.com/nanacln/p/7028275.html
++ https://blog.csdn.net/fungleo/article/details/54574049
++ https://www.cnblogs.com/nanacln/p/7028275.html

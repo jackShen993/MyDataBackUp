@@ -1,47 +1,29 @@
-<!DOCTYPE html><html><script>//声明_czc对象:
-var _czc = _czc || [];
-//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
-_czc.push(["_setAccount", "1259421891"]);</script><head><meta charset=UTF-8><meta http-equiv=Content-Type content="text/html;charset=UTF-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"><meta http-equiv=Pragma content=no-cache><meta http-equiv=Expires content=0><title>端午活动</title><style type=text/css>body{overflow: auto !important}</style></head><link rel=stylesheet href=./static/animation.css><script>var d = window.document.createElement('p');
-	    d.style.width = '1rem';
-	    d.style.display = "none";
-	    var head = window.document.getElementsByTagName('head')[0];
-	    head.appendChild(d);
-	    var defaultFontSize = parseFloat(window.getComputedStyle(d, null).getPropertyValue('width'));
-		(function(doc, win) {
-			var docEl = doc.documentElement,
-				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-				recalc = function() {
-					var clientWidth = docEl.clientWidth;
-					if (!clientWidth) return;
-					docEl.style.fontSize = 100 * (clientWidth / 750)/(defaultFontSize/16) + 'px';
-				};
-			if (!doc.addEventListener) return;
-			win.addEventListener(resizeEvt, recalc, false);
-			doc.addEventListener('DOMContentLoaded', recalc, false);
-		})(document, window);
-		if ('addEventListener' in document) {
-		    document.addEventListener('DOMContentLoaded', function() {
-		        FastClick.attach(document.body);
-		    }, false);
-		}
-		var init=false,bri={};
-		function connectWebViewJavascriptBridge(callback) {
-			if (window.WebViewJavascriptBridge) {
-				return callback(WebViewJavascriptBridge);
-			}
-	        if (window.WVJBCallbacks){
-	            return window.WVJBCallbacks.push(callback);
-	        }
-	        window.WVJBCallbacks = [callback];
-	        var WVJBIframe = document.createElement('iframe');
-	        WVJBIframe.style.display = 'none';
-	        WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-	        document.documentElement.appendChild(WVJBIframe);
-	        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-		}
-		connectWebViewJavascriptBridge(function(bridge) {
-			init=true;
-			bri=bridge;
-		})</script><body><div id=app></div><script src=./static/fastclick.js></script>
-		<script src="lo"></script>
-		<script type=text/javascript src=./static/js/manifest.0458992dd8c60d472c54.js></script><script type=text/javascript src=./static/js/vendor.b87088e0eb23eef15a52.js></script><script type=text/javascript src=./static/js/app.fedf70166e5d3aa623c1.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试表情包</title>
+    <style>
+        #div {
+            width: 100%;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div><br>
+    <input id="word" type="text">
+    <button id="btn">显示表情</button>
+    <script>
+        var div = document.getElementById('div')
+        var word = document.getElementById('word')
+        var btn = document.getElementById('btn')
+        btn.onclick = function(){
+            div.innerHTML = word.value;
+            alert(word.value);
+        }
+    </script>
+</body> 
+</html>
